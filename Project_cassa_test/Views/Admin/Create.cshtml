@@ -1,0 +1,28 @@
+﻿@model Project_cassa_test.Models.Purchase
+
+<form metod="post" asp-action="Create">
+    @Html.HiddenFor(x=>x.Id)
+    <div class="form-group" style="text-align:center">
+        @Html.LabelFor(x=>x.Products) 
+        @Html.TextBoxFor(x=>x.Products) 
+        
+    </div>
+    <div class="form-group" style="text-align:center;">
+        @Html.LabelFor(x=>x.Price)
+        @Html.TextBoxFor(x=>x.Price)
+    </div>
+    <div style="margin:2em;text-align:center">
+    <input type="submit" value="Save" class="btn btn-success"/>
+    </div>
+    @*<div>
+        <label for="products">Product</label>
+        <input id="products" type="text" class="form-control" name="Products"/>
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input id="price" type="text"  class="form-control" name="Price"/>
+    </div>
+    <div style="margin:2em;text-align:center">
+    <input type="submit" value="Save" class="btn btn-success"/>
+    </div>*@
+</form>

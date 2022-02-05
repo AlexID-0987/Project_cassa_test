@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Project_cassa_test.Models.Purchase>
+
+    <div>
+        @Html.ActionLink("Create","Create","Admin",null,new{@class="btn btn-danger"})
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pr in Model)
+            {
+            <tr>
+                <td>@pr.Id</td>
+                <td>@pr.Products</td>
+                <td>@pr.Price</td>
+                <td>
+                    <a asp-controller="Admin" asp-action="Create" asp-route-purId="@pr.Id" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <form method="post" action="~/Admin/Delete">
+                    <input type="hidden" value="@pr.Id" name="id"/>
+                    <input type="submit" class="btn btn-primary " value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

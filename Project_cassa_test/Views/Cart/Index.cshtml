@@ -1,0 +1,33 @@
+﻿@model Project_cassa_test.Models.ViewModels.CartIndexViewModel
+
+<h1>Cart</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td>@line.Quantity</td>
+                <td>@line.Purchase.Products</td>
+                <td>@line.Purchase.Price</td>
+                <td>@(line.Quantity*line.Purchase.Price)</td>
+                
+                
+            </tr>
+        }
+    </tbody>
+    <tfot>
+        <tr>
+            <td>total:</td>
+            <td>@Model.Cart.Comlute()</td>
+        </tr>
+    </tfot>
+</table>
+<a href="@Model.ReturtUrl" class="btn btn-danger">Continue</a>

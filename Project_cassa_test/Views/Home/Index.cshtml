@@ -1,0 +1,57 @@
+﻿@using System.Collections
+@model IEnumerable<Project_cassa_test.Models.Purchase>
+@{
+    Layout = "_Layout";
+}
+
+        <h2>Table</h2>
+        <div>
+        @Html.ActionLink("Create","Create","Home",null,new{@class="btn btn-danger"})
+    </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Products</th>
+                    <th>Price</th>
+                    <th>Add to chec</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prod in Model)
+                {
+                    <tr>
+                        <td>@prod.Id</td>
+                        <td>@prod.Products</td>
+                        <td>@prod.Price</td>
+                        <td>
+                            @using (Html.BeginForm("AddtoItem","Cart"))
+                    {
+                        <input type="hidden" value="@prod.Id" value="@prod.Id" name="Id"/>
+                        @Html.Hidden("returnUrl",Context.Request.Path)
+                        <input type="submit" value="+ add to product" class="btn btn-success"/>
+
+                    }
+                    </td>
+                    <td>
+                    <a asp-controller="Admin" asp-action="Create" asp-route-purId="@prod.Id" class="btn btn-warning">Edit</a>
+                </td>
+                    <td>
+                        
+                    <form method="post" action="~/Home/Delete">
+                    <input type="hidden" value="@prod.Id" name="id"/>
+                    <input type="submit" class="btn btn-primary " value="Delete" />
+                    </form>
+                
+                    </td>
+                        @*</td>
+                        <td><a href="~/Home/Buy/@prod.Id" class="btn btn-primary" value="@prod.Id">Buy</a></td>*@
+                        </tr>
+                }
+            </tbody>
+           
+        </table>
+        
+    
