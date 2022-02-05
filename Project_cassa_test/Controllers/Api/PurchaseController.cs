@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_cassa_test.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -29,6 +30,13 @@ namespace Project_cassa_test.Controllers.Api
                 return NotFound();
             }
             return purchase;
+        }
+        [HttpPost]
+        public async Task<ActionResult<Purchase>> Post(Purchase purchase)
+        {
+            context.Purchases.Add(purchase);
+            await context.SaveChangesAsync();
+            return Ok(purchase);
         }
     }
 }
