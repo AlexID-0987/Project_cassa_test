@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Project_cassa_test.Controllers.Api
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/[controller]")]
     public class PurchaseController : Controller
     {
         private readonly PurchaseContext context;
@@ -19,6 +19,16 @@ namespace Project_cassa_test.Controllers.Api
         public async Task<ActionResult<IEnumerable<Purchase>>> Get()
         {
             return await context.Purchases.ToListAsync();
+        }
+        [HttpGet("{id}")]
+        public async Task <ActionResult<Purchase>> Get(int id)
+        {
+            Purchase purchase = await context.Purchases.FirstOrDefaultAsync(x => x.Id == id);
+            if(purchase == null)
+            {
+                return NotFound();
+            }
+            return purchase;
         }
     }
 }
