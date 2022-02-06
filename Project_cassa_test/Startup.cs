@@ -39,7 +39,7 @@ namespace Project_cassa_test
             }
             app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
