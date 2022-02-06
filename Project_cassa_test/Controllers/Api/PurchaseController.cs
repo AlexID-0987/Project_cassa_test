@@ -38,5 +38,24 @@ namespace Project_cassa_test.Controllers.Api
             await context.SaveChangesAsync();
             return Ok(purchase);
         }
+        [HttpPut]
+        public async Task<ActionResult<Purchase>> Put(Purchase purchase)
+        {
+            context.Update(purchase);
+            await context.SaveChangesAsync();
+            return Ok(purchase);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Purchase>> Delete(int id)
+        {
+            Purchase purchase = await context.Purchases.FirstOrDefaultAsync(x => x.Id == id);
+            if(purchase==null)
+            {
+                return NotFound();
+            }
+            context.Purchases.Remove(purchase);
+            await context.SaveChangesAsync();
+            return Ok(purchase);
+        }
     }
 }
